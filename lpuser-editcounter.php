@@ -1,6 +1,8 @@
 <?php
 
-/* script to query ones editcounts from the wikis via the api */
+/* copyright 2014 - FO-nTTaX
+ *
+ * script to query ones editcounts from the wikis via the api */
 
 if (isset($_GET['name'])) {$name=$_GET['name'];} else {$name ='FO-nTTaX';}
 echo '<!DOCTYPE html><html><head><title>FOs Liquipedia Editcounter</title></head><body>';
