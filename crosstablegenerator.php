@@ -1,5 +1,9 @@
 <?php
 
+/* copyright 2014 - FO-nTTaX
+*
+* script to create the wikicode of the crosstables */
+
 $numberofteams = 20;
 
 echo '&lt;includeonly&gt;&lt;table class="wikitable crosstable" style="text-align:center;margin:0;line-height:14px"&gt;&lt;!--<br>';
