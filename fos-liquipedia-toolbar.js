@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 // copyright 2014 - FO-nTTaX
-// script to display a toolbar on Liquipedia
+// script to display a toolbar on Liquipedia to use with Greasemonkey
 
 var currentwiki = window.location.href.split('/')[3];
 var currentpage = window.location.href.replace('http://wiki.teamliquid.net/'+currentwiki+'/', '');
