@@ -1,8 +1,8 @@
 <?php
 
 /* copyright 2014 - FO-nTTaX
-*
-* script to create the wikicode of the detailed crosstables */
+ *
+ * script to create the wikicode of the detailed crosstables */
 
 $numberofteams = 20;
 
