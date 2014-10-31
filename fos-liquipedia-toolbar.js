@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        LP-Bar
+// @name        FOs Liquipedia Toolbar
 // @namespace   fo
 // @include     http://wiki.teamliquid.net/*
 // @version     1
