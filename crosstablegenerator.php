@@ -13,7 +13,7 @@ for ($i = 1; $i <= $numberofteams; $i++) {
    echo '--&gt;&lt;th&gt;{{#ifeq:{{{team'.$i.'dota|}}}|true|{{TeamIcon/dota|{{{team'.$i.'}}}}}|{{TeamIcon/{{{team'.$i.'}}}}}}}&lt;/th&gt;&lt;!--'."<br>";
    for ($j = 1; $j <= $numberofteams; $j++) {
       if ($i == $j) {
-         echo '--&gt;&lt;td class="crgbc-cross"&gt;&lt;/td&gt;&lt;!--'."<br>";
+         echo '--&gt;&lt;td class="crosstable-bgc-cross"&gt;&lt;/td&gt;&lt;!--'."<br>";
       }
       if ($i < $j) {
          echo '--&gt;{{#if:{{{team'.$j.'|}}}|{{#if:{{{'.$i.'vs'.$j.'result|}}}{{{'.$i.'vs'.$j.'resultvs|}}}|&lt;td class="crosstable-bgc-r{{{'.$i.'vs'.$j.'result|}}}-r{{{'.$i.'vs'.$j.'resultvs|}}}"&gt;\'\'\'{{#if:{{{'.$i.'vs'.$j.'link|}}}|[[{{{'.$i.'vs'.$j.'link}}}|&lt;span class="crosstable-bgc-span"&gt;{{#if:{{{'.$i.'vs'.$j.'abbr|}}}|&lt;abbr title=&quot;{{{'.$i.'vs'.$j.'abbr}}}&quot;&gt;{{{'.$i.'vs'.$j.'result}}}-{{{'.$i.'vs'.$j.'resultvs}}}&lt;/abbr&gt;|{{{'.$i.'vs'.$j.'result}}}-{{{'.$i.'vs'.$j.'resultvs}}}}}&lt;/span&gt;]]|{{#if:{{{'.$i.'vs'.$j.'abbr|}}}|&lt;abbr title=&quot;{{{'.$i.'vs'.$j.'abbr}}}&quot;&gt;{{{'.$i.'vs'.$j.'result}}}-{{{'.$i.'vs'.$j.'resultvs}}}&lt;/abbr&gt;|{{{'.$i.'vs'.$j.'result}}}-{{{'.$i.'vs'.$j.'resultvs}}}}}}}\'\'\'&lt;/td&gt;|&lt;td&gt;&lt;/td&gt;}}}}&lt;!--<br>';
