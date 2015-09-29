@@ -29,4 +29,4 @@ bar += '<button type="submit" style="color: #171717; background-color: #cccccc; 
 bar += '</span>';
 bar += '</div>';
 $('#globalWrapper').append(bar);
-$('#column-one, #p-cactions, #p-personal, #p-logo').css('margin-top', '30px');
+$('#column-one').css('margin-top', '30px');
