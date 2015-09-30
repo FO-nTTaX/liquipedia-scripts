@@ -29,6 +29,6 @@ for ($i = 1; $i <= $numberofteams; $i++) {
    echo '--&gt;{{#if:{{{team'.$i.'|}}}|&lt;th&gt;{{#ifeq:{{{team'.$i.'dota|}}}|true|{{TeamIcon/dota|{{{team'.$i.'}}}}}|{{TeamIcon/{{{team'.$i.'}}}}}}}&lt;/th&gt;}}&lt;!--<br>';
 }
 echo '--&gt;&lt;/tr&gt;&lt;!--<br>';
-echo '--&gt;&lt;/table&gt;&lt;/includeonly&gt;';
+echo '--&gt;&lt;/table&gt;&lt;/includeonly&gt;&lt;noinclude&gt;{{documentation}}[[Category:Templates]]&lt;/noinclude&gt;';
 
 ?>
