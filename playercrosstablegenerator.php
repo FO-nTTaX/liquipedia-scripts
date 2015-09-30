@@ -51,6 +51,6 @@ for ($i = 1; $i <= $numberofteams; $i++) {
 }
 echo '--&gt;{{#ifeq:{{{displaystats}}}|true|&lt;th style="min-width:{{{cell-width|100}}}px;"&gt;&lt;/th&gt;}}&lt;!--<br>';
 echo '--&gt;&lt;/tr&gt;&lt;!--<br>';
-echo '--&gt;&lt;/table&gt;&lt;/includeonly&gt;';
+echo '--&gt;&lt;/table&gt;&lt;/includeonly&gt;&lt;noinclude&gt;{{documentation}}[[Category:Templates]]&lt;/noinclude&gt;';
 
 ?>
