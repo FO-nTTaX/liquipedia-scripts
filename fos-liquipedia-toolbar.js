@@ -19,6 +19,7 @@ bar += '<a href="http://wiki.teamliquid.net/hearthstone/'+currentpage+'"><img sr
 bar += '<a href="http://wiki.teamliquid.net/heroes/'+currentpage+'"><img src="http://wiki.teamliquid.net/starcraft/images2/5/5c/Heroes-interwiki.png"></a>';
 bar += '<a href="http://wiki.teamliquid.net/smash/'+currentpage+'"><img src="http://wiki.teamliquid.net/starcraft/images2/c/cb/Smash-interwiki.png"></a>';
 bar += '<a href="http://wiki.teamliquid.net/counterstrike/'+currentpage+'"><img src="http://wiki.teamliquid.net/starcraft/images/5/5d/CS-interwiki.png"></a>';
+bar += '<a href="http://wiki.teamliquid.net/overwatch/'+currentpage+'"><img src="http://wiki.teamliquid.net/starcraft/images2/3/39/Overwatch-interwiki.png"></a>';
 bar += '</span>';
 bar += '<span style="float: right; margin: 2px; background-color: #171717; border-radius: 7px; padding: 1px 3px;">';
 bar += '<form action="/'+currentwiki+'/index.php" method="get">';
