@@ -10,5 +10,5 @@
 var currentwiki = window.location.href.split('/')[3];
 var currentpage = window.location.href.replace('http://wiki.teamliquid.net/'+currentwiki+'/', '');
 $('.dropdown-brand').find('a').each(function() {
-  $(this).attr('href', $(this).attr('href').replace('Main_Page', currentpage));
+	$(this).attr('href', $(this).attr('href').replace('Main_Page', currentpage));
 });
