@@ -1,6 +1,6 @@
 <?php
 
-/* copyright 2014 - FO-nTTaX
+/* copyright 2014-2016 - FO-nTTaX
  *
  * script to query ones editcounts from the wikis via the api */
 
