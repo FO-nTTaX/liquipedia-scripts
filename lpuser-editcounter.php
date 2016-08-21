@@ -6,13 +6,27 @@
 
 if (isset($_GET['name'])) {$name=$_GET['name'];} else {$name ='FO-nTTaX';}
 echo '<!DOCTYPE html><html><head><title>FOs Liquipedia Editcounter</title></head><body>';
-$wikis = array('starcraft', 'starcraft2', 'dota2', 'hearthstone', 'heroes', 'smash', 'counter-strike', 'overwatch', 'commons');
+$wikis = array(
+	'starcraft',
+	'starcraft2',
+	'dota2',
+	'hearthstone',
+	'heroes',
+	'smash',
+	'counterstrike',
+	'overwatch',
+	'commons',
+	'warcraft',
+	'fighters',
+	'rocketleague',
+	'clashroyale',
+);
 foreach($wikis as $id => $wiki) {
 	$inarr[$id] = unserialize(file_get_contents('http://wiki.teamliquid.net/'.$wiki.'/api.php?action=query&format=php&list=users&ususers='.$name.'&usprop=editcount'));
 	$count[$id] = $inarr[$id]['query']['users'][0]['editcount'];
 }
 echo '<table>';
-foreach ($wikis as $id => $wiki) {
+foreach($wikis as $id => $wiki) {
 	echo '<tr><td>'.$wiki.'</td><td>'.$count[$id].'</td></tr>';
 }
 echo '<tr><td>sum</td><td>'.array_sum($count).'</td></tr>';
