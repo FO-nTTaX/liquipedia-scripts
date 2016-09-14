@@ -9,9 +9,9 @@
 // ==/UserScript==
 
 mw.loader.using( ['mediawiki.util', 'mediawiki.user'] ).then( function() {
-	var stuff = "var username = 'USER'; var password = 'PASSWORD';";
+	var scripttext = "var username = 'USER'; var password = 'PASSWORD';";
 
-	stuff += 
+	scripttext += 
 	"function wiki_auth(login, pass, ref) {"+
 		"$.post(mw.util.wikiScript('api') + '?action=login&lgname=' + login + '&lgpassword=' + pass + '&format=json', function(data) {"+
 			"if(data.login.result == 'NeedToken') {"+
@@ -39,6 +39,6 @@ mw.loader.using( ['mediawiki.util', 'mediawiki.user'] ).then( function() {
 	"}"
 	
 	var script = document.createElement('script');
-	script.innerHTML = stuff;
+	script.innerHTML = scripttext;
 	document.getElementById("top").appendChild(script);
 });
