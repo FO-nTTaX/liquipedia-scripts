@@ -23,7 +23,7 @@ function dopage(i, max) {
 	}
 	$.getJSON('http://wiki.teamliquid.net/' + wiki + '/api.php?action=query&meta=tokens&format=json', function(data) {
 		var csrftoken = data.query.tokens.csrftoken;
-		$.getJSON('http://wiki.teamliquid.net/' + wiki + '/api.php?action=query&prop=revisions&titles=' + pages[i] + '&rvprop=ids&format=json', function(data) {
+		$.getJSON('http://wiki.teamliquid.net/' + wiki + '/api.php?action=query&prop=revisions&titles=' + mw.util.rawurlencode(pages[i]) + '&rvprop=ids&format=json', function(data) {
 			var revid;
 			$.each(data.query.pages, function(index, element) {
 				var revid = element.revisions[0].revid;
