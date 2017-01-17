@@ -28,8 +28,9 @@ function dopage(i, max) {
 			$.each(data.query.pages, function(index, element) {
 				var revid = element.revisions[0].revid;
 				$.post('http://wiki.teamliquid.net/' + wiki + '/api.php?action=review&revid=' + revid + '&flag_accuracy=1&comment=team%20template', {'token': csrftoken}, function(data) {null;});
-				console.log('Token :' + csrftoken);
-				console.log('Revid :' + revid);
+				console.log('Title: ' + pages[i]);
+				console.log('Token: ' + csrftoken);
+				console.log('Revid: ' + revid);
 				dopage(i + 1, max);
 			});
 		});
