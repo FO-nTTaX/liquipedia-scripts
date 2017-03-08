@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
-An incomplete sample script.
-
-This is not a complete bot; rather, it is a template from which simple
-bots can be made. You can rename it to mybot.py, then edit it in
-whatever way you want.
+This bot allows the expansion of templates and then stores the result in a page
 
 The following parameters are supported:
 
@@ -13,6 +9,10 @@ The following parameters are supported:
 
 -dry              If given, doesn't do any real changes, but only shows
                   what would have been changed.
+
+-from             Sourcepage
+
+-to               Targetpage
 
 """
 #
