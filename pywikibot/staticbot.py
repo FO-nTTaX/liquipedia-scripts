@@ -38,11 +38,7 @@ docuReplacements = {
 
 class StaticBot:
 
-    """An incomplete sample bot."""
-
-    # Edit summary message that should be used is placed on /i18n subdirectory.
-    # The file containing these messages should have the same name as the caller
-    # script (i.e. basic.py in this case)
+    """This bot allows the expansion of templates and then stores the result in a page"""
 
     def __init__(self, dry, frompage, topage):
         """
@@ -57,6 +53,7 @@ class StaticBot:
             @type dry: boolean.
         """
         self.dry = dry
+
         self.frompage = frompage
         self.topage = topage
 
