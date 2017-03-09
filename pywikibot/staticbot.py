@@ -66,15 +66,19 @@ class StaticBot:
     def run(self):
         """Load the given page, does some changes, and saves it."""
         frompageobj = pywikibot.Page(self.site, self.frompage)
+        frompageobj.purge()
         topageobj = pywikibot.Page(self.site, self.topage)
 
         text = self.load(frompageobj)
         if not text:
             return
         text = self.site.expand_text(text)
+        text = text.replace("[[SMW::off]]", "").replace("[[SMW::on]]", "")
 
         if not self.save(text, topageobj, self.summary):
             pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
+        mainpageobj = pywikibot.Page(self.site, u"Main Page")
+        mainpageobj.purge()
 
     def load(self, page):
         """Load the text of the given page."""
