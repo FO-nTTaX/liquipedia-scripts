@@ -66,7 +66,7 @@ class StaticBot:
 
         # Set the edit summary message
         self.site = pywikibot.Site()
-        self.summary = u"Prize pool bot"
+        self.summary = u"Prize pool bot (leagueid: " + leagueid + ")"
 
     def run(self):
         """Load the given page, does some changes, and saves it."""
