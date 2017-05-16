@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
-This bot allows the expansion of templates and then stores the result in a page
+This bot gets a tournaments prizepool and then stores the result in a page
 
 The following parameters are supported:
 
@@ -10,9 +10,9 @@ The following parameters are supported:
 -dry              If given, doesn't do any real changes, but only shows
                   what would have been changed.
 
--from             Sourcepage
-
--to               Targetpage
+-targetpage       Targetpage
+-leagueid         League ID in the Dota API
+-valveapikey      API key for valves API
 
 """
 #
