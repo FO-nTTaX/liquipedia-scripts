@@ -78,7 +78,7 @@ class StaticBot:
         if not self.save(text, topageobj, self.summary):
             pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
         mainpageobj = pywikibot.Page(self.site, u"Main Page")
-        mainpageobj.touch()
+        mainpageobj.purge()
 
     def load(self, page):
         """Load the text of the given page."""
