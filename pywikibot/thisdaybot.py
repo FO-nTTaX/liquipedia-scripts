@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
-This bot allows the expansion of templates and then stores the result in a page
+This bot creates 'this day' pages on Liquipedia
 
 The following parameters are supported:
 
