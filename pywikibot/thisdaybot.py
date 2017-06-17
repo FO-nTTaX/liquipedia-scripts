@@ -105,6 +105,7 @@ class ThisDayBot:
                 daytext += "|month=" + str(i).zfill(2) + "|day=" + str(j).zfill(2) + "}}\n\n<!--<h3>Trivia</h3>--><!--uncomment this heading and add trivia as bullet points-->";
                 if((i == 2) and (j == 28)):
                     daytext += "\n\n{{#ifeq:{{#time:L}}|0|<h2>February 29th</h2>{{Liquipedia:This day/2/29}}}}";
+                daytext += "\n\n<noinclude>[[Category:This day]]</noinclude>"
                 pagename = "Liquipedia:This day/" + str(i) + "/" + str(j)
                 pageobj = pywikibot.Page(self.site, pagename)
                 pageobj._expanded_text = None
@@ -114,6 +115,7 @@ class ThisDayBot:
                     monthtext += "{{#ifeq:{{#time:L}}|1|<h2>" + monthnames[str(i)] + " " + self.get_ordinal(j) + "</h2>{{Liquipedia:This day/" + str(i) + "/" + str(j) + "}}}}\n";
                 else:
                     monthtext += "<h2>" + monthnames[str(i)] + " " + self.get_ordinal(j) + "</h2>{{Liquipedia:This day/" + str(i) + "/" + str(j) + "}}\n";
+            monthtext += "\n\n<noinclude>[[Category:This day]]</noinclude>"
             pagename = "Liquipedia:This day/" + str(i)
             pageobj = pywikibot.Page(self.site, pagename)
             pageobj._expanded_text = None
