@@ -19,6 +19,7 @@ var pages = [
 ];
 function dopage(i, max) {
 	if(i + 1 > max) {
+		console.log('Bot finished!');
 		return;
 	}
 	$.getJSON('http://wiki.teamliquid.net/' + wiki + '/api.php?action=query&meta=tokens&format=json', function(data) {
