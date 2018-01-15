@@ -22,7 +22,7 @@ $wikis = array(
 	'clashroyale',
 );
 foreach($wikis as $id => $wiki) {
-	$inarr[$id] = unserialize(file_get_contents('http://wiki.teamliquid.net/'.$wiki.'/api.php?action=query&format=php&list=users&ususers='.$name.'&usprop=editcount'));
+	$inarr[$id] = unserialize(file_get_contents('http://liquipedia.net/'.$wiki.'/api.php?action=query&format=php&list=users&ususers='.$name.'&usprop=editcount'));
 	$count[$id] = $inarr[$id]['query']['users'][0]['editcount'];
 }
 echo '<table>';

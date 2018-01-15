@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        No more hover dropdown on LP
 // @namespace   FileFace
-// @include     http://wiki.teamliquid.net/*
+// @include     http://liquipedia.net/*
 // @version     1
 // @grant       none
 // ==/UserScript==

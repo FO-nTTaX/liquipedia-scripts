@@ -1,25 +1,25 @@
 // ==UserScript==
 // @name FOs Liquipedia Toolbar
 // @namespace fo
-// @include http://wiki.teamliquid.net/*
+// @include http://liquipedia.net/*
 // @version 1
 // @grant none
 // ==/UserScript==
 // copyright 2014, 2015 - FO-nTTaX
 // script to display a toolbar on Liquipedia to use with Greasemonkey
 var currentwiki = window.location.href.split('/')[3];
-var currentpage = window.location.href.replace('http://wiki.teamliquid.net/'+currentwiki+'/', '');
+var currentpage = window.location.href.replace('http://liquipedia.net/'+currentwiki+'/', '');
 var bar = '<div style="position:fixed; z-index: 1000; top: 0; height: 30px; width: 100%; background-image: linear-gradient(to bottom, #3C3C3C 0%, #222 100%);">';
-bar += '<span><a href="http://wiki.teamliquid.net/'+currentwiki+'/" style="color: #cccccc; font-size: 24px; font-weight: bold; vertical-align: middle; padding: 3px;">FOs LP-Toolbar</a></span>';
+bar += '<span><a href="http://liquipedia.net/'+currentwiki+'/" style="color: #cccccc; font-size: 24px; font-weight: bold; vertical-align: middle; padding: 3px;">FOs LP-Toolbar</a></span>';
 bar += '<span style="float: right; margin: 2px; background-color: #cccccc; border-radius: 7px; padding: 1px 3px;">';
-bar += '<a href="http://wiki.teamliquid.net/starcraft/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/starcraft.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/starcraft2/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/starcraft2.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/dota2/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/dota2.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/hearthstone/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/hearthstone.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/heroes/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/heroes.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/smash/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/smash.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/counterstrike/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/counterstrike.png"></a>';
-bar += '<a href="http://wiki.teamliquid.net/overwatch/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/overwatch.png"></a>';
+bar += '<a href="http://liquipedia.net/starcraft/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/starcraft.png"></a>';
+bar += '<a href="http://liquipedia.net/starcraft2/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/starcraft2.png"></a>';
+bar += '<a href="http://liquipedia.net/dota2/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/dota2.png"></a>';
+bar += '<a href="http://liquipedia.net/hearthstone/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/hearthstone.png"></a>';
+bar += '<a href="http://liquipedia.net/heroes/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/heroes.png"></a>';
+bar += '<a href="http://liquipedia.net/smash/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/smash.png"></a>';
+bar += '<a href="http://liquipedia.net/counterstrike/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/counterstrike.png"></a>';
+bar += '<a href="http://liquipedia.net/overwatch/'+currentpage+'"><img src="http://www.teamliquid.net/staff/FOnTTaX/liquipedia/monthlylayout/gameicons/overwatch.png"></a>';
 bar += '</span>';
 bar += '<span style="float: right; margin: 2px; background-color: #171717; border-radius: 7px; padding: 1px 3px;">';
 bar += '<form action="/'+currentwiki+'/index.php" method="get">';

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        LP net login
 // @namespace   fo
-// @include     http://wiki.teamliquid.net/*
+// @include     http://liquipedia.net/*
 // @version     1
 // @grant       none
 // @run-at      document-idle
