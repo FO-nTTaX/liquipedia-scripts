@@ -22,13 +22,13 @@ function dopage(i, max) {
 		console.log('Bot finished!');
 		return;
 	}
-	$.getJSON('http://liquipedia.net/' + wiki + '/api.php?action=query&meta=tokens&format=json', function(data) {
+	$.getJSON('https://liquipedia.net/' + wiki + '/api.php?action=query&meta=tokens&format=json', function(data) {
 		var csrftoken = data.query.tokens.csrftoken;
-		$.getJSON('http://liquipedia.net/' + wiki + '/api.php?action=query&prop=revisions&titles=' + mw.util.rawurlencode(pages[i]) + '&rvprop=ids&format=json', function(data) {
+		$.getJSON('https://liquipedia.net/' + wiki + '/api.php?action=query&prop=revisions&titles=' + mw.util.rawurlencode(pages[i]) + '&rvprop=ids&format=json', function(data) {
 			var revid;
 			$.each(data.query.pages, function(index, element) {
 				var revid = element.revisions[0].revid;
-				$.post('http://liquipedia.net/' + wiki + '/api.php?action=review&revid=' + revid + '&flag_accuracy=1&comment=team%20template', {'token': csrftoken}, function(data) {null;});
+				$.post('https://liquipedia.net/' + wiki + '/api.php?action=review&revid=' + revid + '&flag_accuracy=1&comment=team%20template', {'token': csrftoken}, function(data) {null;});
 				console.log('Title: ' + pages[i]);
 				console.log('Token: ' + csrftoken);
 				console.log('Revid: ' + revid);
