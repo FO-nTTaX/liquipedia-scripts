@@ -138,8 +138,6 @@ def main(*args):
     # If dry is True, doesn't do any real changes, but only show
     # what would have been changed.
     dry = False
-    frompage = u''
-    topage = u''
 
     # Parse command line arguments
     for arg in local_args:
