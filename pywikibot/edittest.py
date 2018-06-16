@@ -11,6 +11,7 @@ The following parameters are supported:
                   what would have been changed.
 
 -to               Targetpage
+-amount           Amount of edits
 
 """
 #
@@ -34,11 +35,11 @@ docuReplacements = {
 }
 
 
-class StaticBot:
+class EditTestBot:
 
     """This bot does 10000 edits to a page"""
 
-    def __init__(self, dry, topage):
+    def __init__(self, dry, topage, amount):
         """
         Constructor.
 
@@ -53,6 +54,7 @@ class StaticBot:
         self.dry = dry
 
         self.topage = topage
+        self.amount = int(amount)
 
         self.acceptall = True
 
@@ -64,7 +66,7 @@ class StaticBot:
         """Load the given page, does some changes, and saves it."""
         topageobj = pywikibot.Page(self.site, self.topage)
 
-        for i in range(1, 10000):
+        for i in range(1, self.amount):
             if not self.save('Test' + str(i), topageobj, self.summary):
                 pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
 
@@ -133,8 +135,8 @@ def main(*args):
     # If dry is True, doesn't do any real changes, but only show
     # what would have been changed.
     dry = False
-    frompage = u''
     topage = u''
+    amount = u''
 
     # Parse command line arguments
     for arg in local_args:
@@ -142,10 +144,12 @@ def main(*args):
             dry = True
         if arg.startswith("-to"):
             topage = arg[len('-to:'):]
+        if arg.startswith("-amount"):
+            amount = arg[len('-amount:'):]
         else:
             genFactory.handleArg(arg)
 
-    bot = StaticBot(dry, topage)
+    bot = EditTestBot(dry, topage, amount)
     bot.run()
 
 if __name__ == "__main__":
