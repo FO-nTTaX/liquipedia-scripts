@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
-This bot does 10000 edits to a page
+This bot does `amount` edits to a page
 
 The following parameters are supported:
 
