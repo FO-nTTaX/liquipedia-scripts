@@ -37,7 +37,7 @@ docuReplacements = {
 
 class EditTestBot:
 
-    """This bot does 10000 edits to a page"""
+    """This bot does "amount" edits to a page"""
 
     def __init__(self, dry, topage, amount):
         """
