@@ -64,7 +64,7 @@ class Family(family.Family):
             return '/teamfortress'
         if code == 'sportscommons':
             return '/commons'
-        elif code.startswith('fo'):
+        elif code.startswith('fo') and code != 'football':
             return '/' + code.replace('fo', '')
         else:
             return '/' + code
