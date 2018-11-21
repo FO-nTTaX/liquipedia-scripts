@@ -48,6 +48,8 @@ class Family(family.Family):
             'fortnite': 'liquipedia.net',
             'arenaofvalor': 'liquipedia.net',
             'criticalops': 'liquipedia.net',
+            'sportscommons': 'sports.liquipedia.net',
+            'football': 'sports.liquipedia.net',
             'focommons': 'wiki.liquipedia.space',
             'fodota2': 'wiki.liquipedia.space',
             'fooverwatch': 'wiki.liquipedia.space',
@@ -58,137 +60,24 @@ class Family(family.Family):
         }
 
     def scriptpath(self, code):
-        return {
-            'commons': '/commons',
-            'counterstrike': '/counterstrike',
-            'dota2': '/dota2',
-            'hearthstone': '/hearthstone',
-            'heroes': '/heroes',
-            'overwatch': '/overwatch',
-            'smash': '/smash',
-            'staff': '/staff',
-            'starcraft': '/starcraft',
-            'starcraft2': '/starcraft2',
-            'warcraft': '/warcraft',
-            'fighters': '/fighters',
-            'rocketleague': '/rocketleague',
-            'clashroyale': '/clashroyale',
-            'crossfire': '/crossfire',
-            'trackmania': '/trackmania',
-            'battlerite': '/battlerite',
-            'diabotical': '/diabotical',
-            'teamfortress': '/teamfortress',
-            'leagueoflegends': '/leagueoflegends',
-            'worldofwarcraft': '/worldofwarcraft',
-            'fifa': '/fifa',
-            'pokemon': '/pokemon',
-            'projectx': '/projectx',
-            'quake': '/quake',
-            'rainbowsix': '/rainbowsix',
-            'pubg': '/pubg',
-            'artifact': '/artifact',
-            'paladins': '/paladins',
-            'battalion': '/battalion',
-            'fortnite': '/fortnite',
-            'arenaofvalor': '/arenaofvalor',
-            'criticalops': '/criticalops',
-            'focommons': '/commons',
-            'fodota2': '/dota2',
-            'fooverwatch': '/overwatch',
-            'fostarcraft': '/starcraft',
-            'fostarcraft2': '/starcraft2',
-            'fowarcraft': '/warcraft',
-            'fts': '/teamfortress',
-        }[code]
+        if code == 'fts':
+            return '/teamfortress'
+        if code == 'sportscommons':
+            return '/commons'
+        elif code.startswith('fo'):
+            return '/' + code.replace('fo', '')
+        else:
+            return '/' + code
 
     @deprecated('APISite.version()')
     def version(self, code):
-        return {
-            'commons': u'1.28.3',
-            'counterstrike': u'1.28.3',
-            'dota2': u'1.28.3',
-            'hearthstone': u'1.28.3',
-            'heroes': u'1.28.3',
-            'overwatch': u'1.28.3',
-            'smash': u'1.28.3',
-            'staff': u'1.28.3',
-            'starcraft': u'1.28.3',
-            'starcraft2': u'1.28.3',
-            'warcraft': u'1.28.3',
-            'fighters': u'1.28.3',
-            'rocketleague': u'1.28.3',
-            'clashroyale': u'1.28.3',
-            'crossfire': u'1.28.3',
-            'trackmania': u'1.28.3',
-            'battlerite': u'1.28.3',
-            'diabotical': u'1.28.3',
-            'teamfortress': u'1.28.3',
-            'leagueoflegends': u'1.28.3',
-            'worldofwarcraft': u'1.28.3',
-            'fifa': u'1.28.3',
-            'pokemon': u'1.28.3',
-            'projectx': u'1.28.3',
-            'quake': u'1.28.3',
-            'rainbowsix': u'1.28.3',
-            'pubg': u'1.28.3',
-            'artifact': '1.28.3',
-            'paladins': '1.28.3',
-            'battalion': '1.28.3',
-            'fortnite': '1.28.3',
-            'arenaofvalor': '1.28.3',
-            'criticalops': '1.28.3',
-            'focommons': u'1.28.3',
-            'fodota2': u'1.28.3',
-            'fooverwatch': u'1.28.3',
-            'fostarcraft': u'1.28.3',
-            'fostarcraft2': u'1.28.3',
-            'fowarcraft': u'1.28.3',
-            'fts': u'1.28.3',
-        }[code]
+        return u'1.31.1'
 
     def protocol(self, code):
-        return {
-            'commons': u'https',
-            'counterstrike': u'https',
-            'dota2': u'https',
-            'hearthstone': u'https',
-            'heroes': u'https',
-            'overwatch': u'https',
-            'smash': u'https',
-            'staff': u'https',
-            'starcraft': u'https',
-            'starcraft2': u'https',
-            'warcraft': u'https',
-            'fighters': u'https',
-            'rocketleague': u'https',
-            'clashroyale': u'https',
-            'crossfire': u'https',
-            'trackmania': u'https',
-            'battlerite': u'https',
-            'diabotical': u'https',
-            'teamfortress': u'https',
-            'leagueoflegends': u'https',
-            'worldofwarcraft': u'https',
-            'fifa': u'https',
-            'pokemon': u'https',
-            'projectx': u'https',
-            'quake': u'https',
-            'rainbowsix': u'https',
-            'pubg': u'https',
-            'artifact': 'https',
-            'paladins': 'https',
-            'battalion': 'https',
-            'fortnite': 'https',
-            'arenaofvalor': 'https',
-            'criticalops': 'https',
-            'focommons': u'https',
-            'fodota2': u'https',
-            'fooverwatch': u'https',
-            'fostarcraft': u'https',
-            'fostarcraft2': u'https',
-            'fowarcraft': u'https',
-            'fts': u'http',
-        }[code]
+        if code == 'fts':
+            return u'http'
+        else:
+            return u'https'
 
     def isPublic(self):
         return False
