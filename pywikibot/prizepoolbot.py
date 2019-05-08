@@ -39,7 +39,7 @@ docuReplacements = {
 }
 
 
-class StaticBot:
+class PrizePoolBot:
 
     """This bot allows the expansion of templates and then stores the result in a page"""
 
@@ -164,7 +164,7 @@ def main(*args):
         else:
             genFactory.handleArg(arg)
 
-    bot = StaticBot(dry, targetpage, leagueid, valveapikey)
+    bot = PrizePoolBot(dry, targetpage, leagueid, valveapikey)
     bot.run()
 
 if __name__ == "__main__":
