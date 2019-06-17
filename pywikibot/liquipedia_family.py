@@ -53,6 +53,7 @@ class Family(family.Family):
             'apexlegends': 'liquipedia.net',
             'autochess': 'liquipedia.net',
             'simracing': 'liquipedia.net',
+            'underlords': 'liquipedia.net',
             'sportscommons': 'sports.liquipedia.net',
             'football': 'sports.liquipedia.net',
             'focommons': 'wiki.liquipedia.space',
