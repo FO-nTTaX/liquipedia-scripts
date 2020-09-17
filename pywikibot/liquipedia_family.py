@@ -11,59 +11,6 @@ from pywikibot.tools import deprecated
 
 
 class Family(family.Family):
-    def __init__(self):
-        family.Family.__init__(self)
-        self.name = 'liquipedia'
-        self.langs = {
-            'commons': 'liquipedia.net',
-            'counterstrike': 'liquipedia.net',
-            'dota2': 'liquipedia.net',
-            'hearthstone': 'liquipedia.net',
-            'heroes': 'liquipedia.net',
-            'overwatch': 'liquipedia.net',
-            'smash': 'liquipedia.net',
-            'staff': 'liquipedia.net',
-            'starcraft': 'liquipedia.net',
-            'starcraft2': 'liquipedia.net',
-            'warcraft': 'liquipedia.net',
-            'fighters': 'liquipedia.net',
-            'rocketleague': 'liquipedia.net',
-            'clashroyale': 'liquipedia.net',
-            'crossfire': 'liquipedia.net',
-            'trackmania': 'liquipedia.net',
-            'battlerite': 'liquipedia.net',
-            'diabotical': 'liquipedia.net',
-            'teamfortress': 'liquipedia.net',
-            'leagueoflegends': 'liquipedia.net',
-            'worldofwarcraft': 'liquipedia.net',
-            'fifa': 'liquipedia.net',
-            'pokemon': 'liquipedia.net',
-            'projectx': 'liquipedia.net',
-            'quake': 'liquipedia.net',
-            'rainbowsix': 'liquipedia.net',
-            'pubg': 'liquipedia.net',
-            'artifact': 'liquipedia.net',
-            'paladins': 'liquipedia.net',
-            'battalion': 'liquipedia.net',
-            'fortnite': 'liquipedia.net',
-            'arenaofvalor': 'liquipedia.net',
-            'criticalops': 'liquipedia.net',
-            'callofduty': 'liquipedia.net',
-            'magic': 'liquipedia.net',
-            'apexlegends': 'liquipedia.net',
-            'autochess': 'liquipedia.net',
-            'simracing': 'liquipedia.net',
-            'underlords': 'liquipedia.net',
-            'sportscommons': 'sports.liquipedia.net',
-            'football': 'sports.liquipedia.net',
-            'focommons': 'wiki.liquipedia.space',
-            'fodota2': 'wiki.liquipedia.space',
-            'fooverwatch': 'wiki.liquipedia.space',
-            'fostarcraft': 'wiki.liquipedia.space',
-            'fostarcraft2': 'wiki.liquipedia.space',
-            'fowarcraft': 'wiki.liquipedia.space',
-            'fts': 'fonttax.wiki.tldev.eu',
-        }
 
     def scriptpath(self, code):
         if code == 'fts':
@@ -77,7 +24,7 @@ class Family(family.Family):
 
     @deprecated('APISite.version()')
     def version(self, code):
-        return u'1.31.1'
+        return u'1.31.8'
 
     def protocol(self, code):
         if code == 'fts':
@@ -87,3 +34,63 @@ class Family(family.Family):
 
     def isPublic(self):
         return False
+
+    name = 'liquipedia'
+
+    langs = {
+        'callofduty': 'liquipedia.net',
+        'commons': 'liquipedia.net',
+        'counterstrike': 'liquipedia.net',
+        'dota2': 'liquipedia.net',
+        'hearthstone': 'liquipedia.net',
+        'heroes': 'liquipedia.net',
+        'overwatch': 'liquipedia.net',
+        'smash': 'liquipedia.net',
+        'staff': 'liquipedia.net',
+        'starcraft': 'liquipedia.net',
+        'starcraft2': 'liquipedia.net',
+        'warcraft': 'liquipedia.net',
+        'fighters': 'liquipedia.net',
+        'rocketleague': 'liquipedia.net',
+        'clashroyale': 'liquipedia.net',
+        'crossfire': 'liquipedia.net',
+        'trackmania': 'liquipedia.net',
+        'battlerite': 'liquipedia.net',
+        'diabotical': 'liquipedia.net',
+        'teamfortress': 'liquipedia.net',
+        'leagueoflegends': 'liquipedia.net',
+        'worldofwarcraft': 'liquipedia.net',
+        'fifa': 'liquipedia.net',
+        'pokemon': 'liquipedia.net',
+        'projectx': 'liquipedia.net',
+        'quake': 'liquipedia.net',
+        'rainbowsix': 'liquipedia.net',
+        'pubg': 'liquipedia.net',
+        'artifact': 'liquipedia.net',
+        'paladins': 'liquipedia.net',
+        'battalion': 'liquipedia.net',
+        'fortnite': 'liquipedia.net',
+        'arenaofvalor': 'liquipedia.net',
+        'criticalops': 'liquipedia.net',
+        'callofduty': 'liquipedia.net',
+        'magic': 'liquipedia.net',
+        'apexlegends': 'liquipedia.net',
+        'autochess': 'liquipedia.net',
+        'simracing': 'liquipedia.net',
+        'underlords': 'liquipedia.net',
+        'teamfighttactics': 'liquipedia.net',
+        'brawlstars': 'liquipedia.net',
+        'runeterra': 'liquipedia.net',
+        'valorant': 'liquipedia.net',
+        'freefire': 'liquipedia.net',
+        'ageofempires': 'liquipedia.net',
+        'sportscommons': 'sports.liquipedia.net',
+        'football': 'sports.liquipedia.net',
+        'focommons': 'wiki.liquipedia.space',
+        'fodota2': 'wiki.liquipedia.space',
+        'fooverwatch': 'wiki.liquipedia.space',
+        'fostarcraft': 'wiki.liquipedia.space',
+        'fostarcraft2': 'wiki.liquipedia.space',
+        'fowarcraft': 'wiki.liquipedia.space',
+        'fts': 'fonttax.wiki.tldev.eu',
+    }
