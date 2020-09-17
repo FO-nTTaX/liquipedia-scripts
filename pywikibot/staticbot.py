@@ -76,7 +76,7 @@ class StaticBot:
         text = text.replace("[[SMW::off]]", "").replace("[[SMW::on]]", "")
 
         if not self.save(text, topageobj, self.summary):
-            pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
+            pywikibot.output(u'Page %s not saved.' % topageobj.as_link())
         mainpageobj = pywikibot.Page(self.site, u"Main Page")
         mainpageobj.purge()
 
@@ -87,10 +87,10 @@ class StaticBot:
             text = page.get()
         except pywikibot.NoPage:
             pywikibot.output(u"Page %s does not exist; skipping."
-                             % page.title(asLink=True))
+                             % page.as_link())
         except pywikibot.IsRedirectPage:
             pywikibot.output(u"Page %s is a redirect; skipping."
-                             % page.title(asLink=True))
+                             % page.as_link())
         else:
             return text
         return None
@@ -115,7 +115,7 @@ class StaticBot:
                               minor=minorEdit, botflag=botflag)
                 except pywikibot.LockedPage:
                     pywikibot.output(u"Page %s is locked; skipping."
-                                     % page.title(asLink=True))
+                                     % page.as_link())
                 except pywikibot.EditConflict:
                     pywikibot.output(
                         u'Skipping %s because of edit conflict'
