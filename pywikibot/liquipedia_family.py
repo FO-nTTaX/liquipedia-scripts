@@ -17,14 +17,12 @@ class Family(family.Family):
             return '/teamfortress'
         if code == 'sportscommons':
             return '/commons'
-        elif code.startswith('fo') and code != 'fortnite' and code != 'football':
-            return '/' + code.replace('fo', '')
         else:
             return '/' + code
 
     @deprecated('APISite.version()')
     def version(self, code):
-        return u'1.31.8'
+        return u'1.31.12'
 
     def protocol(self, code):
         if code == 'fts':
@@ -84,13 +82,8 @@ class Family(family.Family):
         'valorant': 'liquipedia.net',
         'freefire': 'liquipedia.net',
         'ageofempires': 'liquipedia.net',
+        'wildrift': 'liquipedia.net',
         'sportscommons': 'sports.liquipedia.net',
         'football': 'sports.liquipedia.net',
-        'focommons': 'wiki.liquipedia.space',
-        'fodota2': 'wiki.liquipedia.space',
-        'fooverwatch': 'wiki.liquipedia.space',
-        'fostarcraft': 'wiki.liquipedia.space',
-        'fostarcraft2': 'wiki.liquipedia.space',
-        'fowarcraft': 'wiki.liquipedia.space',
         'fts': 'fonttax.wiki.tldev.eu',
     }
