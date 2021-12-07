@@ -50,6 +50,7 @@ class Family(family.Family):
             'rainbowsix': 'liquipedia.net',
             'rocketleague': 'liquipedia.net',
             'runeterra': 'liquipedia.net',
+            'sideswipe': 'liquipedia.net',
             'simracing': 'liquipedia.net',
             'smash': 'liquipedia.net',
             'splitgate': 'liquipedia.net',
