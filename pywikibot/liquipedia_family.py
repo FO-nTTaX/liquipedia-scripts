@@ -58,7 +58,7 @@ class Family(family.Family):
             'staff': 'liquipedia.net',
             'starcraft2': 'liquipedia.net',
             'starcraft': 'liquipedia.net',
-            'teamfighttactics': 'liquipedia.net',
+            'tft': 'liquipedia.net',
             'teamfortress': 'liquipedia.net',
             'trackmania': 'liquipedia.net',
             'underlords': 'liquipedia.net',
