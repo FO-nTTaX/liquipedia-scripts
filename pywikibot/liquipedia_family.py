@@ -83,7 +83,7 @@ class Family(family.Family):
 
     @deprecated('APISite.version()')
     def version(self, code):
-        return u'1.35.3'
+        return u'1.35.5'
 
     def protocol(self, code):
         if code == 'fts':
