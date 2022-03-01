@@ -1,18 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
-"""
+r"""
 This bot allows the expansion of templates and then stores the result in a page
-
-The following parameters are supported:
-
-&params;
-
--dry              If given, doesn't do any real changes, but only shows
-                  what would have been changed.
-
--from             Sourcepage
-
--to               Targetpage
 
 """
 #
@@ -28,6 +17,8 @@ __version__ = '$Id: 23dac2badba93914592c50e95d72c53d7d2d7ea7 $'
 import pywikibot
 from pywikibot import pagegenerators
 from pywikibot import i18n
+from pywikibot.bot import SingleSiteBot
+from pywikibot.exceptions import LockedPageError
 
 # This is required for the text that is shown when you run this script
 # with the parameter -help.
@@ -36,11 +27,11 @@ docuReplacements = {
 }
 
 
-class StaticBotMulti:
+class StaticBotMulti(SingleSiteBot):
 
     """This bot allows the expansion of templates and then stores the result in a page"""
 
-    def __init__(self, dry, pages):
+    def __init__(self, generator, pages, **kwargs):
         """
         Constructor.
 
@@ -48,83 +39,47 @@ class StaticBotMulti:
             @param generator: The page generator that determines on which pages
                               to work.
             @type generator: generator.
-            @param dry: If True, doesn't do any real changes, but only shows
-                        what would have been changed.
-            @type dry: boolean.
+            @param pages: List of pages to be edited
+            @type pages: list.
         """
-        self.dry = dry
+        super().__init__(generator=generator, **kwargs)
 
         self.pages = pages
 
-        self.acceptall = True
-
         # Set the edit summary message
-        self.site = pywikibot.Site()
-        self.summary = u"Automatic conversion from dynamic page to static wikicode"
+        self.summary = u'Automatic conversion from dynamic page to static wikicode'
+
+        self.opt.always = True
 
     def run(self):
         """Load the given page, does some changes, and saves it."""
         for i in range(len(self.pages)):
-            frompageobj = pywikibot.Page(self.site, self.pages[i] + '/dynamic')
-            frompageobj.touch()
-            frompageobj._expanded_text = None
-            topageobj = pywikibot.Page(self.site, self.pages[i])
+            try:
+                frompageobj = pywikibot.Page(self._site, self.pages[i] + '/dynamic')
+                frompageobj.touch()
+                frompageobj._expanded_text = None
+                topageobj = pywikibot.Page(self._site, self.pages[i])
 
-            text = frompageobj.expand_text()
-            text = text.replace("[[SMW::off]]", "").replace("[[SMW::on]]", "")
+                oldtext = topageobj.get()
+                newtext = frompageobj.expand_text()
+                newtext = newtext.replace('[[SMW::off]]', '').replace('[[SMW::on]]', '')
 
-            if not self.save(text, topageobj, self.summary):
-                pywikibot.output(u'Page %s not saved.' % topageobj.as_link())
-        mainpageobj = pywikibot.Page(self.site, u"Main Page")
-        mainpageobj.touch()
-
-    def load(self, page):
-        """Load the text of the given page."""
+                if not self.save(oldtext, newtext, topageobj, self.summary):
+                    pywikibot.output(u'Page %s not saved.' % topageobj.title(as_link=True))
+            except LockedPageError:
+                pywikibot.output('Page {} is locked'.format(topageobj.title()))
         try:
-            # Load the page
-            text = page.get()
-        except pywikibot.NoPage:
-            pywikibot.output(u"Page %s does not exist; skipping."
-                             % page.as_link())
-        except pywikibot.IsRedirectPage:
-            pywikibot.output(u"Page %s is a redirect; skipping."
-                             % page.as_link())
-        else:
-            return text
-        return None
+            mainpageobj = pywikibot.Page(self._site, u'Main Page')
+            mainpageobj.touch()
+        except LockedPageError:
+            pywikibot.output('Page {} is locked'.format(mainpageobj.title()))
 
-    def save(self, text, page, comment=None, minorEdit=True,
-             botflag=True):
-        """Update the given page with new text."""
-        # only save if something was changed
-        if text != page.get():
-            # Show the title of the page we're working on.
-            # Highlight the title in purple.
-            pywikibot.output(u"\n\n>>> \03{lightpurple}%s\03{default} <<<"
-                             % page.title())
-            # show what was changed
-            pywikibot.showDiff(page.get(), text)
-            pywikibot.output(u'Comment: %s' % comment)
-            if not self.dry:
-                try:
-                    page.text = text
-                    # Save the page
-                    page.save(summary=comment or self.comment,
-                              minor=minorEdit, botflag=botflag)
-                except pywikibot.LockedPage:
-                    pywikibot.output(u"Page %s is locked; skipping."
-                                     % page.as_link())
-                except pywikibot.EditConflict:
-                    pywikibot.output(
-                        u'Skipping %s because of edit conflict'
-                        % (page.title()))
-                except pywikibot.SpamfilterError as error:
-                    pywikibot.output(
-                        u'Cannot change %s because of spam blacklist entry %s'
-                        % (page.title(), error.url))
-                else:
-                    return True
-        return False
+    def save(self, oldtext, newtext, page, summary=None, minor=True,
+            botflag=True, **kwargs):
+        return self.userPut(page, oldtext, newtext,
+            summary=summary,
+            ignore_save_related_errors=True, minor=True,
+            botflag=True, asynchronous=False, **kwargs)
 
 
 def main(*args):
@@ -136,25 +91,24 @@ def main(*args):
     @param args: command line arguments
     @type args: list of unicode
     """
+    options = {}
+
     # Process global arguments to determine desired site
     local_args = pywikibot.handle_args(args)
     genFactory = pagegenerators.GeneratorFactory()
 
-    # If dry is True, doesn't do any real changes, but only show
-    # what would have been changed.
-    dry = False
     pages = []
 
     # Parse command line arguments
     for arg in local_args:
-        if genFactory.handleArg(arg):
+        opt, _, value = arg.partition(':')
+        if genFactory.handle_arg(arg):
             continue
-        if arg.startswith("-dry"):
-            dry = True
         else:
             pages.append(arg)
+    gen = genFactory.getCombinedGenerator()
 
-    bot = StaticBotMulti(dry, pages)
+    bot = StaticBotMulti(gen, pages, **options)
     bot.run()
 
 if __name__ == "__main__":

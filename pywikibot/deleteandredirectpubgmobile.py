@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
+THIS BOT IS UNTESTED AND ASSUMED TO BE BROKEN
+
 This script is a hack intended for onetime use and some declared options will
 likely not work, use at own risk
 
@@ -207,12 +209,12 @@ class DeletionReplaceRobot(MultipleSitesBot, CurrentPageBot):
 
             redirect_text = '#REDIRECT[[pubgmobile:' + self.current_page.title() + ']]'
             if not self.save(redirect_text, self.current_page, self.summary):
-                pywikibot.output(u'Page %s not saved.' % self.current_page.title(asLink=True))
+                pywikibot.output(u'Page %s not saved.' % self.current_page.title(as_link=True))
         else:
             pywikibot.output(u'Skipping: {0} does not exist.'.format(
                 self.current_page))
 
-    def save(self, text, page, comment=None, minorEdit=True,
+    def save(self, text, page, comment=None, minor=True,
              botflag=True):
         """Update the given page with new text."""
         # only save if something was changed
@@ -228,10 +230,10 @@ class DeletionReplaceRobot(MultipleSitesBot, CurrentPageBot):
                 page.text = text
                 # Save the page
                 page.save(summary=comment or self.comment,
-                          minor=minorEdit, botflag=botflag)
+                          minor=minor, botflag=botflag)
             except pywikibot.LockedPage:
                 pywikibot.output(u"Page %s is locked; skipping."
-                                 % page.title(asLink=True))
+                                 % page.title(as_link=True))
             except pywikibot.EditConflict:
                 pywikibot.output(
                     u'Skipping %s because of edit conflict'
@@ -288,7 +290,7 @@ def main(*args):
                 namespaces = mysite.namespaces
             options['orphansonly'] = namespaces
         else:
-            genFactory.handleArg(arg)
+            genFactory.handle_arg(arg)
             found = arg.find(':') + 1
             if found:
                 pageName = arg[found:]

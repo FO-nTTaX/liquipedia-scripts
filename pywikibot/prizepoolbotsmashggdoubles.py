@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
+THIS BOT IS UNTESTED AND ASSUMED TO BE BROKEN
+
 This bot gets a tournaments prizepool from smashgg and then stores the result in a page
 
 The following parameters are supported:
@@ -88,11 +90,11 @@ class StaticBot:
             print(doubles)
 
             if not self.save(singles, targetpagesinglesobj, self.summary):
-                pywikibot.output(u'Page %s not saved.' % targetpagesinglesobj.title(asLink=True))
+                pywikibot.output(u'Page %s not saved.' % targetpagesinglesobj.title(as_link=True))
             if not self.save(doubles, targetpagedoublesobj, self.summary):
-                pywikibot.output(u'Page %s not saved.' % targetpagedoublesobj.title(asLink=True))
+                pywikibot.output(u'Page %s not saved.' % targetpagedoublesobj.title(as_link=True))
 
-    def save(self, text, page, comment=None, minorEdit=True,
+    def save(self, text, page, comment=None, minor=True,
              botflag=True):
         """Update the given page with new text."""
         # only save if something was changed
@@ -109,10 +111,10 @@ class StaticBot:
                     page.text = text
                     # Save the page
                     page.save(summary=comment or self.comment,
-                              minor=minorEdit, botflag=botflag)
+                              minor=minor, botflag=botflag)
                 except pywikibot.LockedPage:
                     pywikibot.output(u"Page %s is locked; skipping."
-                                     % page.title(asLink=True))
+                                     % page.title(as_link=True))
                 except pywikibot.EditConflict:
                     pywikibot.output(
                         u'Skipping %s because of edit conflict'
@@ -157,7 +159,7 @@ def main(*args):
         if arg.startswith("-url"):
             url = arg[len('-url:'):]
         else:
-            genFactory.handleArg(arg)
+            genFactory.handle_arg(arg)
 
     bot = StaticBot(dry, targetpagesingles, targetpagedoubles, url)
     bot.run()

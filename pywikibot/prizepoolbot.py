@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
+THIS BOT IS UNTESTED AND ASSUMED TO BE BROKEN
+
 This bot gets a tournaments prizepool and then stores the result in a page
 
 The following parameters are supported:
@@ -80,7 +82,7 @@ class PrizePoolBot:
         print(text)
 
         if not self.save(text, targetpageobj, self.summary):
-            pywikibot.output(u'Page %s not saved.' % targetpageobj.title(asLink=True))
+            pywikibot.output(u'Page %s not saved.' % targetpageobj.title(as_link=True))
 
     def load(self, page):
         """Load the text of the given page."""
@@ -89,15 +91,15 @@ class PrizePoolBot:
             text = page.get()
         except pywikibot.NoPage:
             pywikibot.output(u"Page %s does not exist; skipping."
-                             % page.title(asLink=True))
+                             % page.title(as_link=True))
         except pywikibot.IsRedirectPage:
             pywikibot.output(u"Page %s is a redirect; skipping."
-                             % page.title(asLink=True))
+                             % page.title(as_link=True))
         else:
             return text
         return None
 
-    def save(self, text, page, comment=None, minorEdit=True,
+    def save(self, text, page, comment=None, minor=True,
              botflag=True):
         """Update the given page with new text."""
         # only save if something was changed
@@ -114,10 +116,10 @@ class PrizePoolBot:
                     page.text = text
                     # Save the page
                     page.save(summary=comment or self.comment,
-                              minor=minorEdit, botflag=botflag)
+                              minor=minor, botflag=botflag)
                 except pywikibot.LockedPage:
                     pywikibot.output(u"Page %s is locked; skipping."
-                                     % page.title(asLink=True))
+                                     % page.title(as_link=True))
                 except pywikibot.EditConflict:
                     pywikibot.output(
                         u'Skipping %s because of edit conflict'
@@ -162,7 +164,7 @@ def main(*args):
         if arg.startswith("-valveapikey"):
             valveapikey = arg[len('-valveapikey:'):]
         else:
-            genFactory.handleArg(arg)
+            genFactory.handle_arg(arg)
 
     bot = PrizePoolBot(dry, targetpage, leagueid, valveapikey)
     bot.run()

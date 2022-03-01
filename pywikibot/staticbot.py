@@ -7,9 +7,6 @@ The following parameters are supported:
 
 &params;
 
--dry              If given, doesn't do any real changes, but only shows
-                  what would have been changed.
-
 -from             Sourcepage
 
 -to               Targetpage
@@ -28,6 +25,7 @@ __version__ = '$Id: 23dac2badba93914592c50e95d72c53d7d2d7ea7 $'
 import pywikibot
 from pywikibot import pagegenerators
 from pywikibot import i18n
+from pywikibot.bot import SingleSiteBot
 
 # This is required for the text that is shown when you run this script
 # with the parameter -help.
@@ -36,11 +34,11 @@ docuReplacements = {
 }
 
 
-class StaticBot:
+class StaticBot(SingleSiteBot):
 
     """This bot allows the expansion of templates and then stores the result in a page"""
 
-    def __init__(self, dry, frompage, topage):
+    def __init__(self, generator, frompage, topage, **kwargs):
         """
         Constructor.
 
@@ -48,85 +46,37 @@ class StaticBot:
             @param generator: The page generator that determines on which pages
                               to work.
             @type generator: generator.
-            @param dry: If True, doesn't do any real changes, but only shows
-                        what would have been changed.
-            @type dry: boolean.
         """
-        self.dry = dry
+        super().__init__(generator=generator, **kwargs)
 
         self.frompage = frompage
         self.topage = topage
 
-        self.acceptall = True
-
         # Set the edit summary message
-        self.site = pywikibot.Site()
-        self.summary = u"Automatic conversion from dynamic page to static wikicode"
+        self.summary = u'Automatic conversion from dynamic page to static wikicode'
+
+        self.opt.always = True
 
     def run(self):
         """Load the given page, does some changes, and saves it."""
-        frompageobj = pywikibot.Page(self.site, self.frompage)
+        frompageobj = pywikibot.Page(self._site, self.frompage)
         frompageobj.touch()
-        topageobj = pywikibot.Page(self.site, self.topage)
+        frompageobj._expanded_text = None
+        topageobj = pywikibot.Page(self._site, self.topage)
 
-        text = self.load(frompageobj)
-        if not text:
-            return
-        text = self.site.expand_text(text)
-        text = text.replace("[[SMW::off]]", "").replace("[[SMW::on]]", "")
+        oldtext = topageobj.get()
+        newtext = frompageobj.expand_text()
+        newtext = newtext.replace('[[SMW::off]]', '').replace('[[SMW::on]]', '')
 
-        if not self.save(text, topageobj, self.summary):
-            pywikibot.output(u'Page %s not saved.' % topageobj.as_link())
-        mainpageobj = pywikibot.Page(self.site, u"Main Page")
-        mainpageobj.purge()
+        if not self.save(oldtext, newtext, topageobj, self.summary):
+            pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
 
-    def load(self, page):
-        """Load the text of the given page."""
-        try:
-            # Load the page
-            text = page.get()
-        except pywikibot.NoPage:
-            pywikibot.output(u"Page %s does not exist; skipping."
-                             % page.as_link())
-        except pywikibot.IsRedirectPage:
-            pywikibot.output(u"Page %s is a redirect; skipping."
-                             % page.as_link())
-        else:
-            return text
-        return None
-
-    def save(self, text, page, comment=None, minorEdit=True,
-             botflag=True):
-        """Update the given page with new text."""
-        # only save if something was changed
-        if text != page.get():
-            # Show the title of the page we're working on.
-            # Highlight the title in purple.
-            pywikibot.output(u"\n\n>>> \03{lightpurple}%s\03{default} <<<"
-                             % page.title())
-            # show what was changed
-            pywikibot.showDiff(page.get(), text)
-            pywikibot.output(u'Comment: %s' % comment)
-            if not self.dry:
-                try:
-                    page.text = text
-                    # Save the page
-                    page.save(summary=comment or self.comment,
-                              minor=minorEdit, botflag=botflag)
-                except pywikibot.LockedPage:
-                    pywikibot.output(u"Page %s is locked; skipping."
-                                     % page.as_link())
-                except pywikibot.EditConflict:
-                    pywikibot.output(
-                        u'Skipping %s because of edit conflict'
-                        % (page.title()))
-                except pywikibot.SpamfilterError as error:
-                    pywikibot.output(
-                        u'Cannot change %s because of spam blacklist entry %s'
-                        % (page.title(), error.url))
-                else:
-                    return True
-        return False
+    def save(self, oldtext, newtext, page, summary=None, minor=True,
+            botflag=True, **kwargs):
+        return self.userPut(page, oldtext, newtext,
+            summary=summary,
+            ignore_save_related_errors=True, minor=True,
+            botflag=True, asynchronous=False, **kwargs)
 
 
 def main(*args):
@@ -142,25 +92,22 @@ def main(*args):
     local_args = pywikibot.handle_args(args)
     genFactory = pagegenerators.GeneratorFactory()
 
-    # If dry is True, doesn't do any real changes, but only show
-    # what would have been changed.
-    dry = False
     frompage = u''
     topage = u''
 
     # Parse command line arguments
     for arg in local_args:
-        if arg.startswith("-dry"):
-            dry = True
-        if arg.startswith("-from"):
-            frompage = arg[len('-from:'):]
-        if arg.startswith("-to"):
-            topage = arg[len('-to:'):]
+        opt, _, value = arg.partition(':')
+        if opt == '-from':
+            frompage = value
+        if opt == '-to':
+            topage = value
         else:
-            genFactory.handleArg(arg)
+            genFactory.handle_arg(arg)
+    gen = genFactory.getCombinedGenerator()
 
-    bot = StaticBot(dry, frompage, topage)
+    bot = StaticBot(gen, frompage, topage)
     bot.run()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

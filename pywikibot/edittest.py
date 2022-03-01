@@ -7,9 +7,6 @@ The following parameters are supported:
 
 &params;
 
--dry              If given, doesn't do any real changes, but only shows
-                  what would have been changed.
-
 -to               Targetpage
 -amount           Amount of edits
 
@@ -68,7 +65,7 @@ class EditTestBot:
 
         for i in range(1, self.amount):
             if not self.save('Test' + str(i), topageobj, self.summary):
-                pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
+                pywikibot.output(u'Page %s not saved.' % topageobj.title(as_link=True))
 
     def load(self, page):
         """Load the text of the given page."""
@@ -77,15 +74,15 @@ class EditTestBot:
             text = page.get()
         except pywikibot.NoPage:
             pywikibot.output(u"Page %s does not exist; skipping."
-                             % page.title(asLink=True))
+                             % page.title(as_link=True))
         except pywikibot.IsRedirectPage:
             pywikibot.output(u"Page %s is a redirect; skipping."
-                             % page.title(asLink=True))
+                             % page.title(as_link=True))
         else:
             return text
         return None
 
-    def save(self, text, page, comment=None, minorEdit=True,
+    def save(self, text, page, comment=None, minor=True,
              botflag=True):
         """Update the given page with new text."""
         # only save if something was changed
@@ -102,10 +99,10 @@ class EditTestBot:
                     page.text = text
                     # Save the page
                     page.save(summary=comment or self.comment,
-                              minor=minorEdit, botflag=botflag)
+                              minor=minor, botflag=botflag)
                 except pywikibot.LockedPage:
                     pywikibot.output(u"Page %s is locked; skipping."
-                                     % page.title(asLink=True))
+                                     % page.title(as_link=True))
                 except pywikibot.EditConflict:
                     pywikibot.output(
                         u'Skipping %s because of edit conflict'
@@ -147,7 +144,7 @@ def main(*args):
         if arg.startswith("-amount"):
             amount = arg[len('-amount:'):]
         else:
-            genFactory.handleArg(arg)
+            genFactory.handle_arg(arg)
 
     bot = EditTestBot(dry, topage, amount)
     bot.run()

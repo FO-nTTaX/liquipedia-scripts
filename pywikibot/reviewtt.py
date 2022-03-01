@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
+THIS BOT IS UNTESTED AND ASSUMED TO BE BROKEN
+
 This bot allows the expansion of templates and then stores the result in a page
 
 The following parameters are supported:
@@ -144,7 +146,7 @@ def main(*args):
         if arg.startswith("-dry"):
             dry = True
         else:
-            genFactory.handleArg(arg)
+            genFactory.handle_arg(arg)
 
     bot = ReviewTTBot(dry)
     bot.run()
