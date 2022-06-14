@@ -41,6 +41,7 @@ class Family(family.Family):
         'leagueoflegends': 'liquipedia.net',
         'magic': 'liquipedia.net',
         'mobilelegends': 'liquipedia.net',
+        'naraka': 'liquipedia.net',
         'overwatch': 'liquipedia.net',
         'paladins': 'liquipedia.net',
         'pokemon': 'liquipedia.net',
