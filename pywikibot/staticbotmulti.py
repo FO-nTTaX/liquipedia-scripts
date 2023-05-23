@@ -70,6 +70,7 @@ class StaticBotMulti(SingleSiteBot):
                 pywikibot.output('Page {} is locked'.format(topageobj.title()))
         try:
             mainpageobj = pywikibot.Page(self._site, u'Main Page')
+            mainpageobj.purge()
             mainpageobj.touch()
         except LockedPageError:
             pywikibot.output('Page {} is locked'.format(mainpageobj.title()))
