@@ -24,7 +24,7 @@ class Family(family.Family):
         'brawlhalla': 'liquipedia.net',
         'brawlstars': 'liquipedia.net',
         'callofduty': 'liquipedia.net',
-        'callofduty': 'liquipedia.net',
+        'clashofclans': 'liquipedia.net',
         'clashroyale': 'liquipedia.net',
         'commons': 'liquipedia.net',
         'counterstrike': 'liquipedia.net',
