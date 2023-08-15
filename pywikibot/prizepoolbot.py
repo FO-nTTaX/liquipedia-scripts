@@ -166,6 +166,9 @@ def main(*args):
         else:
             genFactory.handle_arg(arg)
 
+    site = pywikibot.Site();
+    site.login()
+
     bot = PrizePoolBot(dry, targetpage, leagueid, valveapikey)
     bot.run()
 

@@ -319,6 +319,10 @@ def main(*args):
     if generator:
         if summary is None:
             summary = pywikibot.input(u'Enter a reason for the deletion:')
+
+        site = pywikibot.Site();
+        site.login()
+
         bot = DeletionReplaceRobot(generator, summary, **options)
         bot.run()
         return True

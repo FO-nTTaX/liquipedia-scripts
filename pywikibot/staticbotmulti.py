@@ -109,6 +109,9 @@ def main(*args):
             pages.append(arg)
     gen = genFactory.getCombinedGenerator()
 
+    site = pywikibot.Site();
+    site.login()
+
     bot = StaticBotMulti(gen, pages, **options)
     bot.run()
 

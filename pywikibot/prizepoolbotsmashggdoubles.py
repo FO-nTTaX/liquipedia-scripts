@@ -161,6 +161,9 @@ def main(*args):
         else:
             genFactory.handle_arg(arg)
 
+    site = pywikibot.Site();
+    site.login()
+
     bot = StaticBot(dry, targetpagesingles, targetpagedoubles, url)
     bot.run()
 

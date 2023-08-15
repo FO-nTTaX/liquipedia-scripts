@@ -138,6 +138,9 @@ def main(*args):
         genFactory.handleArg(arg)
     gen = genFactory.getCombinedGenerator()
 
+    site = pywikibot.Site();
+    site.login()
+
     bot = ThisDayBot(gen)
     bot.run()
 

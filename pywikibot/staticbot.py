@@ -106,6 +106,9 @@ def main(*args):
             genFactory.handle_arg(arg)
     gen = genFactory.getCombinedGenerator()
 
+    site = pywikibot.Site();
+    site.login()
+
     bot = StaticBot(gen, frompage, topage)
     bot.run()
 
