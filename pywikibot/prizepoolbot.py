@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8  -*-
 """
-THIS BOT IS UNTESTED AND ASSUMED TO BE BROKEN
-
 This bot gets a tournaments prizepool and then stores the result in a page
 
 The following parameters are supported:
@@ -30,6 +28,7 @@ __version__ = '$Id: 23dac2badba93914592c50e95d72c53d7d2d7ea7 $'
 import pywikibot
 from pywikibot import pagegenerators
 from pywikibot import i18n
+from pywikibot.bot import SingleSiteBot
 
 import requests
 import locale
@@ -41,11 +40,11 @@ docuReplacements = {
 }
 
 
-class PrizePoolBot:
+class PrizePoolBot(SingleSiteBot):
 
     """This bot allows the expansion of templates and then stores the result in a page"""
 
-    def __init__(self, dry, targetpage, leagueid, valveapikey):
+    def __init__(self, generator, dry, targetpage, leagueid, valveapikey, **kwargs):
         """
         Constructor.
 
@@ -57,6 +56,8 @@ class PrizePoolBot:
                         what would have been changed.
             @type dry: boolean.
         """
+        super().__init__(generator=generator, **kwargs)
+
         self.dry = dry
 
         self.valveapikey = valveapikey
@@ -67,7 +68,6 @@ class PrizePoolBot:
         self.acceptall = True
 
         # Set the edit summary message
-        self.site = pywikibot.Site()
         self.summary = u"Prize pool bot (leagueid: " + leagueid + ")"
 
     def run(self):
@@ -78,7 +78,7 @@ class PrizePoolBot:
         h = r.json()
         text = h['result']['prize_pool']
         locale.setlocale(locale.LC_NUMERIC, '')
-        text = locale.format("%.*f", (0, text), True)
+        text = locale.format_string("%.*f", (0, text), True)
         print(text)
 
         if not self.save(text, targetpageobj, self.summary):
@@ -165,11 +165,12 @@ def main(*args):
             valveapikey = arg[len('-valveapikey:'):]
         else:
             genFactory.handle_arg(arg)
+    gen = genFactory.getCombinedGenerator()
 
     site = pywikibot.Site();
     site.login()
 
-    bot = PrizePoolBot(dry, targetpage, leagueid, valveapikey)
+    bot = PrizePoolBot(gen, dry, targetpage, leagueid, valveapikey)
     bot.run()
 
 if __name__ == "__main__":
