@@ -44,6 +44,7 @@ class Family(family.Family):
         'mobilelegends': 'liquipedia.net',
         'naraka': 'liquipedia.net',
         'omegastrikers': 'liquipedia.net',
+        'osu': 'liquipedia.net',
         'overwatch': 'liquipedia.net',
         'paladins': 'liquipedia.net',
         'pokemon': 'liquipedia.net',
@@ -71,6 +72,7 @@ class Family(family.Family):
         'valorant': 'liquipedia.net',
         'warcraft': 'liquipedia.net',
         'wildrift': 'liquipedia.net',
+        'worldoftanks': 'liquipedia.net',
         'worldofwarcraft': 'liquipedia.net',
         'zula': 'liquipedia.net',
 
