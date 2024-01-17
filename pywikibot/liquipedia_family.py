@@ -39,6 +39,7 @@ class Family(family.Family):
         'halo': 'liquipedia.net',
         'hearthstone': 'liquipedia.net',
         'heroes': 'liquipedia.net',
+        'illuvium': 'liquipedia.net',
         'leagueoflegends': 'liquipedia.net',
         'magic': 'liquipedia.net',
         'mobilelegends': 'liquipedia.net',
@@ -56,6 +57,7 @@ class Family(family.Family):
         'runeterra': 'liquipedia.net',
         'sideswipe': 'liquipedia.net',
         'simracing': 'liquipedia.net',
+        'smite': 'liquipedia.net',
         'smash': 'liquipedia.net',
         'splatoon': 'liquipedia.net',
         'splitgate': 'liquipedia.net',
@@ -89,10 +91,6 @@ class Family(family.Family):
             return '/commons'
         else:
             return '/' + code
-
-    @deprecated('APISite.version()')
-    def version(self, code):
-        return u'1.35.5'
 
     def protocol(self, code):
         if code == 'fts':
