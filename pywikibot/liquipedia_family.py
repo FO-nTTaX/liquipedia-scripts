@@ -36,6 +36,7 @@ class Family(family.Family):
         'formula1': 'liquipedia.net',
         'fortnite': 'liquipedia.net',
         'freefire': 'liquipedia.net',
+        'goals': 'liquipedia.net',
         'halo': 'liquipedia.net',
         'hearthstone': 'liquipedia.net',
         'heroes': 'liquipedia.net',
