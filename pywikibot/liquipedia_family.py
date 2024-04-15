@@ -31,6 +31,8 @@ class Family(family.Family):
         'criticalops': 'liquipedia.net',
         'crossfire': 'liquipedia.net',
         'dota2': 'liquipedia.net',
+        'dota2game': 'liquipedia.net',
+        'dota2gameru': 'liquipedia.net',
         'fifa': 'liquipedia.net',
         'fighters': 'liquipedia.net',
         'formula1': 'liquipedia.net',
