@@ -33,7 +33,7 @@ class Family(family.Family):
         'dota2': 'liquipedia.net',
         'dota2game': 'liquipedia.net',
         'dota2gameru': 'liquipedia.net',
-        'fifa': 'liquipedia.net',
+        'easportsfc': 'liquipedia.net',
         'fighters': 'liquipedia.net',
         'formula1': 'liquipedia.net',
         'fortnite': 'liquipedia.net',
