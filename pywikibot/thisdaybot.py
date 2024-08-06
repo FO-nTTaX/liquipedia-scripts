@@ -101,7 +101,7 @@ class ThisDayBot(SingleSiteBot):
                 pageobj = pywikibot.Page(self.site, pagename)
                 pageobj._expanded_text = None
                 if not self.save('', daytext, pageobj, self.summary):
-                    pywikibot.output(u'Page %s not saved.' % pageobj.title(asLink=True))
+                    pywikibot.output(u'Page %s not saved.' % pageobj.title(as_link=True))
                 if((i == 2) and (j == 29)):
                     monthtext += '{{#ifeq:{{#time:L}}|1|<h2>' + monthnames[str(i)] + ' ' + self.get_ordinal(j) + '</h2>{{Liquipedia:This day/' + str(i) + '/' + str(j) + '}}}}\n';
                 else:
@@ -110,7 +110,7 @@ class ThisDayBot(SingleSiteBot):
             pageobj = pywikibot.Page(self.site, pagename)
             pageobj._expanded_text = None
             if not self.save('', monthtext, pageobj, self.summary):
-                pywikibot.output(u'Page %s not saved.' % pageobj.title(asLink=True))
+                pywikibot.output(u'Page %s not saved.' % pageobj.title(as_link=True))
 
     def save(self, oldtext, newtext, page, summary=None, minor=True,
             botflag=True, **kwargs):
