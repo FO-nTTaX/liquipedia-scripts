@@ -69,7 +69,7 @@ class StaticBot(SingleSiteBot):
         newtext = newtext.replace('[[SMW::off]]', '').replace('[[SMW::on]]', '')
 
         if not self.save(oldtext, newtext, topageobj, self.summary):
-            pywikibot.output(u'Page %s not saved.' % topageobj.title(asLink=True))
+            pywikibot.output(u'Page %s not saved.' % topageobj.title(as_link=True))
 
     def save(self, oldtext, newtext, page, summary=None, minor=True,
             botflag=True, **kwargs):
