@@ -30,6 +30,7 @@ class Family(family.Family):
         'counterstrike': 'liquipedia.net',
         'criticalops': 'liquipedia.net',
         'crossfire': 'liquipedia.net',
+        'deadlock': 'liquipedia.net',
         'dota2': 'liquipedia.net',
         'dota2game': 'liquipedia.net',
         'dota2gameru': 'liquipedia.net',
