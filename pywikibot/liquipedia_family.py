@@ -31,7 +31,7 @@ class Family(family.Family):
         'crossfire': 'liquipedia.net',
         'deadlock': 'liquipedia.net',
         'dota2': 'liquipedia.net',
-        'dota2game': 'liquipedia.net',
+        'dota2gamearchive': 'liquipedia.net',
         'dota2gameru': 'liquipedia.net',
         'easportsfc': 'liquipedia.net',
         'fighters': 'liquipedia.net',
