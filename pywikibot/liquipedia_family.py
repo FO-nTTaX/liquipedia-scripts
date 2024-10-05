@@ -40,7 +40,6 @@ class Family(family.Family):
         'freefire': 'liquipedia.net',
         'geoguessr': 'liquipedia.net',
         'goals': 'liquipedia.net',
-        'geoguessr': 'liquipedia.net',
         'halo': 'liquipedia.net',
         'hearthstone': 'liquipedia.net',
         'heroes': 'liquipedia.net',
