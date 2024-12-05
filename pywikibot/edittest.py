@@ -83,7 +83,7 @@ class EditTestBot:
         return None
 
     def save(self, text, page, comment=None, minor=True,
-             botflag=True):
+             bot=True):
         """Update the given page with new text."""
         # only save if something was changed
         if text != page.get():
@@ -99,7 +99,7 @@ class EditTestBot:
                     page.text = text
                     # Save the page
                     page.save(summary=comment or self.comment,
-                              minor=minor, botflag=botflag)
+                              minor=minor, bot=bot)
                 except pywikibot.LockedPage:
                     pywikibot.output(u"Page %s is locked; skipping."
                                      % page.title(as_link=True))

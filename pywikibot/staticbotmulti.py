@@ -62,9 +62,8 @@ class StaticBotMulti(SingleSiteBot):
 
                 oldtext = topageobj.get()
                 newtext = frompageobj.expand_text()
-                newtext = newtext.replace('[[SMW::off]]', '').replace('[[SMW::on]]', '')
 
-                if not self.save(oldtext, newtext, topageobj, self.summary):
+                if not self.save(oldtext, newtext, topageobj, self.summary, show_diff=False):
                     pywikibot.output(u'Page %s not saved.' % topageobj.title(as_link=True))
             except LockedPageError:
                 pywikibot.output('Page {} is locked'.format(topageobj.title()))
@@ -76,11 +75,11 @@ class StaticBotMulti(SingleSiteBot):
             pywikibot.output('Page {} is locked'.format(mainpageobj.title()))
 
     def save(self, oldtext, newtext, page, summary=None, minor=True,
-            botflag=True, **kwargs):
+            bot=True, **kwargs):
         return self.userPut(page, oldtext, newtext,
             summary=summary,
             ignore_save_related_errors=True, minor=True,
-            botflag=True, asynchronous=False, **kwargs)
+            bot=True, asynchronous=False, **kwargs)
 
 
 def main(*args):

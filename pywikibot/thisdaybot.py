@@ -113,11 +113,11 @@ class ThisDayBot(SingleSiteBot):
                 pywikibot.output(u'Page %s not saved.' % pageobj.title(as_link=True))
 
     def save(self, oldtext, newtext, page, summary=None, minor=True,
-            botflag=True, **kwargs):
+            bot=True, **kwargs):
         return self.userPut(page, oldtext, newtext,
             summary=summary,
             ignore_save_related_errors=True, minor=True,
-            botflag=True, asynchronous=False, **kwargs)
+            bot=True, asynchronous=False, **kwargs)
 
 
 def main(*args):
