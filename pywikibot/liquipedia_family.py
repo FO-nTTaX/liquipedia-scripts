@@ -2,7 +2,6 @@
 
 
 from pywikibot import family
-from pywikibot.tools import classproperty
 import json
 import requests
 
