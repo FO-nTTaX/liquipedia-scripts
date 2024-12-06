@@ -177,6 +177,12 @@ class DeletionRobot(CurrentPageBot):
                     pywikibot.info(f'      {page.title()!s}')
 
     def skip_page(self, page) -> bool:
+        """Skip files with global usage"""
+        if not self.opt.undelete and page.exists() and page.namespace() == Namespace.FILE:
+            global_usage = page.site.simple_request(action='query', prop='globalusage', titles=page.title()).submit()
+            if len(global_usage['query']['pages'][str(page.pageid)]['globalusage']) > 0:
+                pywikibot.info(f'Skipping: {page} has global usage.')
+                return True
         """Skip the page under some conditions."""
         if self.opt.undelete and page.exists():
             pywikibot.info(f'Skipping: {page} already exists.')
