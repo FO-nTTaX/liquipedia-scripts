@@ -2,7 +2,6 @@
 
 
 from pywikibot import family
-import json
 import requests
 
 
@@ -11,7 +10,7 @@ class Family(family.Family):
     @classmethod
     def __post_init__(self):
         response = requests.get('https://liquipedia.net/api.php?action=listwikis', headers={'accept-encoding': 'gzip'})
-        wikis = json.loads(response.content)
+        wikis = response.json()
         for game in wikis['allwikis'].keys():
             self.langs[game] = 'liquipedia.net'
 
